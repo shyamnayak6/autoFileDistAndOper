@@ -1,5 +1,3 @@
-﻿#$sourcePath="D:\Users\shyam\ICE5.0"
-#$destPath="D:\Users\shyam\delete\ICE5.0"
 
 $scriptPath = split-path -parent $MyInvocation.MyCommand.Definition
 Write-Host 'properties file path' $scriptPath
@@ -91,15 +89,10 @@ Write-Host $newname
 }
 }
 
-
 }
 
 invoke-command -session $session -scriptblock $taskscriptContent  -ArgumentList  $sourcePath, $destPath
-
- Copy-Item $sourcePath"\*" -Destination $destPath  -ToSession $session -Recurse -Force
-
+Copy-Item $sourcePath"\*" -Destination $destPath  -ToSession $session -Recurse -Force
 invoke-command -session $session -scriptblock $taskscriptContent1  -ArgumentList  $Machine_Name, $destPath
-#Copy-Item $sourcePath"\*" -Destination $sourcePath  -FromSession $session  -Recurse  -Force 
-#checking the folder present or not, If not present its going to create the logs folder in persona machine
 Remove-PSSession -Session $session
  }
